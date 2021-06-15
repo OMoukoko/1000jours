@@ -49,3 +49,5 @@ export enum PoiTypeEnum {
 export const MAPVIEW_MIN_ZOOM_LEVEL = 10;
 export const OPENSTREETMAP_URLTEMPLATE =
   "http://c.tile.openstreetmap.org/{z}/{x}/{y}.png";
+export const ANDROID_URLTEMPLATE =
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}";

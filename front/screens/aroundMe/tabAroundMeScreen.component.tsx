@@ -158,17 +158,15 @@ const TabAroundMeScreen: React.FC = () => {
           style={styles.map}
           initialRegion={region}
           onRegionChangeComplete={onRegionChangeComplete}
-          mapType={
-            PlatformConstants.PLATFORM_IS_IOS
-              ? MAP_TYPES.NONE
-              : MAP_TYPES.STANDARD
-          }
+          mapType={MAP_TYPES.NONE}
         >
-          {PlatformConstants.PLATFORM_IS_IOS && (
-            <UrlTile
-              urlTemplate={AroundMeConstants.OPENSTREETMAP_URLTEMPLATE}
-            />
-          )}
+          <UrlTile
+            urlTemplate={
+              PlatformConstants.PLATFORM_IS_IOS
+                ? AroundMeConstants.OPENSTREETMAP_URLTEMPLATE
+                : AroundMeConstants.ANDROID_URLTEMPLATE
+            }
+          />
           {poisArrayOnMap.map((poi, poiIndex) => (
             <View key={poiIndex}>
               <Marker
