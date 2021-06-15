@@ -2,7 +2,12 @@ import { useRef, useState } from "react";
 import * as React from "react";
 import { StyleSheet } from "react-native";
 import type { Region } from "react-native-maps";
-import MapView, { Marker, PROVIDER_DEFAULT } from "react-native-maps";
+import MapView, {
+  MAP_TYPES,
+  Marker,
+  PROVIDER_DEFAULT,
+  UrlTile,
+} from "react-native-maps";
 
 import {
   Button,
@@ -19,6 +24,7 @@ import {
   Labels,
   Margins,
   Paddings,
+  PlatformConstants,
   Sizes,
 } from "../../constants";
 import type { CartographiePoisFromDB } from "../../type";
@@ -152,7 +158,17 @@ const TabAroundMeScreen: React.FC = () => {
           style={styles.map}
           initialRegion={region}
           onRegionChangeComplete={onRegionChangeComplete}
+          mapType={
+            PlatformConstants.PLATFORM_IS_IOS
+              ? MAP_TYPES.NONE
+              : MAP_TYPES.STANDARD
+          }
         >
+          {PlatformConstants.PLATFORM_IS_IOS && (
+            <UrlTile
+              urlTemplate={AroundMeConstants.OPENSTREETMAP_URLTEMPLATE}
+            />
+          )}
           {poisArrayOnMap.map((poi, poiIndex) => (
             <View key={poiIndex}>
               <Marker
